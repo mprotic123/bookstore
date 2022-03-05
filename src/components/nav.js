@@ -13,18 +13,13 @@ const Navbar = () => {
       path: '/categories',
       text: 'Categories',
     },
-    {
-      id: 3,
-      path: '/input',
-      text: 'Input',
-    },
 
   ];
 
   return (
     <div className="navbar">
-      <h1>Bookstore</h1>
-      <nav className="navBar">
+      <nav className="nav">
+        <h1><a href="/">Bookstore CMS</a></h1>
         <ul>
           {links.map((link) => (
             <li key={link.id}>
@@ -38,6 +33,9 @@ const Navbar = () => {
           ))}
         </ul>
       </nav>
+      <div className="circle">
+        <i className="fas fa-user" />
+      </div>
     </div>
   );
 };
