@@ -1,39 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllBooks } from '../redux/books/books';
 import Book from './Book';
-
-const { v4: uuidv4 } = require('uuid');
+import InputBook from './inputBook';
 
 const BooksList = () => {
-  const books = [
-    {
-      id: uuidv4(),
-      title: 'Eloquent Javascript',
-      author: 'Marijn Haverbeke',
-    },
-    {
-      id: uuidv4(),
-      title: 'Lord of The Rings',
-      author: 'J. R. R. Tolkien',
-    },
-    {
-      id: uuidv4(),
-      title: 'Harry Potter',
-      author: 'J.K. Rowling',
-    },
-  ];
+  const dispatch = useDispatch();
+  const { booksReducer } = useSelector((state) => state);
+
+  useEffect(() => {
+    dispatch(getAllBooks());
+  }, [dispatch]);
 
   return (
 
-    <ul>
-      {books.map((book) => (
+    <div>
+      {booksReducer.map((book) => (
         <Book
-          id={book.id}
-          key={book.id}
-          title={book.title}
-          author={book.author}
+          key={book.item_id}
+          book={book}
         />
       ))}
-    </ul>
+      <InputBook />
+    </div>
 
   );
 };
